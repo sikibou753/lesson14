@@ -15,6 +15,7 @@ namespace エンジン
 		ルートパス"img/mat04-02.png",
 		ルートパス"img/mat04-03.png",
 		ルートパス"img/mat04-04.png",
+		ルートパス"img/mat04-05.png",
 	};
 
 	UVテーブル リソース_ローダー::uvテーブル_[RID_個数] = {// エラーチェックのため要素数を明示的に指定
@@ -153,6 +154,8 @@ namespace エンジン
 		// RID_MISSILE_BREAK: ミサイル破壊
 		{ IMG_MAT04_03, 0 + 16 * 16, 224, 16,16},
 
+		///  RID_IMG_MAT04_05
+		{ IMG_MAT04_03, 0, 0, 960,960 },
 	};
 
 
@@ -180,6 +183,8 @@ namespace エンジン
 			ハンドル配列_[i] = LoadGraph(画像パス_[i]);
 			if (ハンドル配列_[i] == -1) return -1;
 		}
+
+		//DrawGraph(0, 0, ハンドル配列_[4], true);
 
 		return 0;
 	}
@@ -248,6 +253,7 @@ namespace エンジン
 
 	void レンダリングサービス::描画_左上(unsigned int リソースID, int x, int y)
 	{
+		
 		const UVテーブル& uv = リソース_ローダー::UVテーブル(リソースID);
 
 		//描画(x,y, u,v, w,h, handle,半透明,反転)
@@ -264,4 +270,8 @@ namespace エンジン
 			ローダー->ハンドル所得(uv.画像), TRUE, FALSE);
 	}
 
+	void BG()
+	{
+		
+	}
 }

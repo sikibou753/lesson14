@@ -28,7 +28,7 @@ using namespace エンジン;
 int ゲームエンジン::初期化()
 {
 	ChangeWindowMode(TRUE);//非全画面にセット
-	SetGraphMode(540, 960, 32);
+	SetGraphMode(960, 960, 32);
 	if (DxLib_Init() == -1) { return -1; }	// DXライブラリ初期化(エラーで終了)
 
 	レンダリングサービス_->初期化();
@@ -66,10 +66,14 @@ int ゲームエンジン::更新()
 	入力サービス_->更新();
 	エンティティサービス_->更新(経過時間);
 	弾丸サービス_->更新(経過時間);
+	
+	TCHAR a[128] = _T("img/mat04-05.png");
+	int BG = LoadGraph(a);
 
 	// 描画
 	ClearDrawScreen();//裏画面消す
 	SetDrawScreen(DX_SCREEN_BACK);//描画先を裏画面に
+	DrawGraph(0, 0, BG, true);
 	エンティティサービス_->描画();
 	弾丸サービス_->描画();
 	ScreenFlip();//裏画面を表画面にコピー

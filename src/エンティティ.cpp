@@ -210,6 +210,7 @@ namespace エンジン
 
 	void エンティティサービス::描画()
 	{
+		
 		for (auto it = エンティティマップ_.begin();it != エンティティマップ_.end(); it++)
 		{
 			it->second->描画();
